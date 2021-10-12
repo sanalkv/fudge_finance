@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fudge_financial/ui/widget/more_button.dart';
+import 'package:fudge_financial/ui/shared/helpers.dart';
+import 'package:fudge_financial/ui/widget/linear_progress_widget.dart';
 import 'package:fudge_financial/ui/widget/recent_transaction_widget.dart';
+import 'package:fudge_financial/ui/widget/response_handler.dart';
 import 'package:fudge_financial/ui/widget/user_widget.dart';
 import 'package:stacked/stacked.dart';
 
@@ -17,7 +19,7 @@ class HomeView extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: defaultPadding,
               decoration: BoxDecoration(
                 color: Color(0xFF171D3C),
                 borderRadius: BorderRadius.only(
@@ -38,7 +40,11 @@ class HomeView extends StatelessWidget {
                               children: [
                                 Text(
                                   'Hola, ',
-                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
                                 ),
                                 Text(
                                   'Michael',
@@ -59,12 +65,14 @@ class HomeView extends StatelessWidget {
                           ],
                         ),
                         Spacer(),
-                        SvgPicture.asset(
-                          'assets/svg/bell.svg',
+                        Image.asset(
+                          'assets/images/bell.png',
+                          height: 20,
+                          width: 20,
                           color: Colors.white,
                         ),
                         Container(
-                          margin: const EdgeInsets.only(left: 16),
+                          margin: leftPadding,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white),
@@ -215,10 +223,10 @@ class HomeView extends StatelessWidget {
             ),
             Expanded(
               child: ListView(
-                padding: EdgeInsets.zero,
+                padding: topPadding + bottomPadding,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: leftPadding + rightPadding,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -241,31 +249,36 @@ class HomeView extends StatelessWidget {
                   ),
                   //chart
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: leftPadding + rightPadding + topPadding,
                     child: Text(
                       'TOP USERS FROM YOUR COMMUNITY',
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 16),
+                    margin: topPadding,
                     height: 75,
-                    child: ListView.separated(
-                      separatorBuilder: (_, __) => SizedBox(
-                        width: 16,
+                    child: ResponseHandler(
+                      isBusy: model.isBusy,
+                      error: model.hasError,
+                      hasError: model.hasError,
+                      child: ListView.separated(
+                        separatorBuilder: (_, __) => SizedBox(
+                          width: 23,
+                        ),
+                        itemCount: model.top10Users?.length ?? 0,
+                        padding: leftPadding + rightPadding,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, index) {
+                          return UserWidget(
+                            name: model.top10Users?[index].username ?? 'N/A',
+                          );
+                        },
                       ),
-                      itemCount: 10,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (_, index) {
-                        return UserWidget(
-                          name: 'dd',
-                        );
-                      },
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: defaultPadding,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -286,9 +299,45 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  ListView.builder(itemBuilder: (_, __) {
-                    return RecentTransactionWidget();
-                  })
+                  ListView.separated(
+                      separatorBuilder: (_, __) => SizedBox(
+                            height: 23,
+                          ),
+                      shrinkWrap: true,
+                      itemCount: 10,
+                      padding: leftPadding + rightPadding,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (_, __) {
+                        return RecentTransactionWidget();
+                      }),
+                  Padding(
+                    padding: defaultPadding,
+                    child: Text(
+                      'FINANCIAL GOALS',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: leftPadding + rightPadding,
+                    child: LinearProgressWidget(color: Color(0xFF147AD6), progress: 0.3),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Padding(
+                    padding: leftPadding + rightPadding,
+                    child: LinearProgressWidget(color: Color(0xFFEC6666), progress: 0.75),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Padding(
+                    padding: leftPadding + rightPadding,
+                    child: LinearProgressWidget(color: Color(0xFF79D2DE), progress: 0.60),
+                  ),
                 ],
               ),
             )
