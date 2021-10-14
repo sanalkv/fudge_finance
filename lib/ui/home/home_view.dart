@@ -264,7 +264,7 @@ class HomeView extends StatelessWidget {
                       hasError: model.hasError,
                       child: ListView.separated(
                         separatorBuilder: (_, __) => SizedBox(
-                          width: 23,
+                          width: 20,
                         ),
                         itemCount: model.top10Users?.length ?? 0,
                         padding: leftPadding + rightPadding,
@@ -290,6 +290,7 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
+                          onTap: ()=>model.goToSavedCardsView(),
                           child: Image.asset(
                             'assets/images/more_button.png',
                             width: 55,
@@ -301,7 +302,7 @@ class HomeView extends StatelessWidget {
                   ),
                   ListView.separated(
                       separatorBuilder: (_, __) => SizedBox(
-                            height: 23,
+                            height: 20,
                           ),
                       shrinkWrap: true,
                       itemCount: 10,

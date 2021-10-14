@@ -12,21 +12,19 @@ class ResponseHandler extends StatelessWidget {
     required this.hasError,
     required this.error,
     required this.child,
-    this.showLoader = true
   }) : super(key: key);
   final bool isBusy;
   final bool hasError;
   final dynamic error;
   final Widget child;
-  final bool showLoader;
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 500),
       child: isBusy 
-          ? showLoader? const Center(
+          ? const Center(
               child: Loader(),
-            ) : SizedBox.shrink()
+            ) 
           : hasError
               ? Center(
                   child: Padding(

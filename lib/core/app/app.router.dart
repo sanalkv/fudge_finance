@@ -10,11 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../ui/home/home_view.dart';
+import '../../ui/saved_cards/saved_cards_view.dart';
 
 class Routes {
   static const String homeView = '/';
+  static const String savedCardsView = '/saved-cards-view';
   static const all = <String>{
     homeView,
+    savedCardsView,
   };
 }
 
@@ -23,6 +26,7 @@ class StackedRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.homeView, page: HomeView),
+    RouteDef(Routes.savedCardsView, page: SavedCardsView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -30,6 +34,12 @@ class StackedRouter extends RouterBase {
     HomeView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const HomeView(),
+        settings: data,
+      );
+    },
+    SavedCardsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SavedCardsView(),
         settings: data,
       );
     },
