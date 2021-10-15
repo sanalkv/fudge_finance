@@ -21,16 +21,16 @@ class ResponseHandler extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 500),
-      child: isBusy 
+      child: isBusy
           ? const Center(
               child: Loader(),
-            ) 
+            )
           : hasError
               ? Center(
                   child: Padding(
-                    padding: defaultPadding ,
+                    padding: defaultPadding,
                     child: Text(
-                     errorHandler(error),
+                      errorHandler(error),
                       textAlign: TextAlign.center,
                     ),
                   ),

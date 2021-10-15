@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class RecentTransactionWidget extends StatelessWidget {
   const RecentTransactionWidget({Key? key}) : super(key: key);

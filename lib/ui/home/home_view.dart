@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fudge_financial/ui/shared/helpers.dart';
 import 'package:fudge_financial/ui/widget/chart.dart';
 import 'package:fudge_financial/ui/widget/linear_progress_widget.dart';
@@ -29,6 +28,7 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               child: SafeArea(
+                bottom: false,
                 child: Column(
                   children: [
                     Row(
@@ -261,7 +261,7 @@ class HomeView extends StatelessWidget {
                     height: 75,
                     child: ResponseHandler(
                       isBusy: model.isBusy,
-                      error: model.hasError,
+                      error: model.modelError,
                       hasError: model.hasError,
                       child: ListView.separated(
                         separatorBuilder: (_, __) => SizedBox(

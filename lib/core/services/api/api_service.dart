@@ -11,20 +11,22 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
   static ApiService init() {
-    final dio = Dio()..interceptors.add(PrettyDioLogger(requestBody: true));
-    dio.interceptors.add(_interceptorsWrapper());
+    final dio = Dio()
+      ..interceptors.addAll(
+        [
+          PrettyDioLogger(requestBody: true),
+          _interceptorsWrapper(),
+        ],
+      );
     return ApiService(dio);
   }
 
   @GET('/users')
   Future<List<UserModel>> getUserList();
-
-  
 }
 
 InterceptorsWrapper _interceptorsWrapper() {
   return InterceptorsWrapper(
-   
     onError: (e, handler) {
       final String errorString = errorHandler(e);
       DioError error = DioError(requestOptions: e.requestOptions, response: e.response, type: e.type, error: errorString);

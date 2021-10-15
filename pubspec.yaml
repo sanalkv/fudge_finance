@@ -32,7 +32,6 @@ dependencies:
   stacked_services: ^0.8.13
   retrofit: ^2.0.1
   pretty_dio_logger: ^1.2.0-beta-1
-  flutter_svg: ^0.22.0
   fl_chart: ^0.40.2
 
 

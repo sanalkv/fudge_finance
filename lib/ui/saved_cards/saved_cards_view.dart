@@ -51,7 +51,10 @@ class _SavedCardsViewState extends State<SavedCardsView> {
               ),
               Text(
                 'My saved cards',
-                style: TextStyle(fontSize: 20, color: Colors.black),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
             ],
           ),
@@ -71,7 +74,7 @@ class _SavedCardsViewState extends State<SavedCardsView> {
           child: Column(
             children: [
               Container(
-                height: 180,
+                height: 170,
                 child: PageView.builder(
                     itemCount: 5,
                     scrollDirection: Axis.horizontal,
