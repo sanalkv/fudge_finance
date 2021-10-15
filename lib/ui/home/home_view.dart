@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fudge_financial/ui/shared/helpers.dart';
+import 'package:fudge_financial/ui/widget/chart.dart';
 import 'package:fudge_financial/ui/widget/linear_progress_widget.dart';
 import 'package:fudge_financial/ui/widget/recent_transaction_widget.dart';
 import 'package:fudge_financial/ui/widget/response_handler.dart';
@@ -247,9 +248,9 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  //chart
+                  Chart(),
                   Padding(
-                    padding: leftPadding + rightPadding + topPadding,
+                    padding: leftPadding + rightPadding,
                     child: Text(
                       'TOP USERS FROM YOUR COMMUNITY',
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),

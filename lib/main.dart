@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Fudge Financial',
       debugShowCheckedModeBanner: false,
       navigatorKey: StackedService.navigatorKey,
+      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       onGenerateRoute: StackedRouter().onGenerateRoute,
     );
   }

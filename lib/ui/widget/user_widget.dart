@@ -9,22 +9,26 @@ class UserWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(
-          'assets/images/user.png',
-          height: 50,
-          width: 50,
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          name,
-          style: TextStyle(fontSize: 12),
-        ),
-      ],
+    return SizedBox(
+      width: 60,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            'assets/images/user.png',
+            height: 50,
+            width: 50,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            name,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 12),
+          ),
+        ],
+      ),
     );
   }
 }
